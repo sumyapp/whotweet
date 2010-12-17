@@ -1,0 +1,69 @@
+@CHARSET "utf-8";
+
+body { background-color: #EEEEEE; }
+
+h1 { 
+	height: 33px;
+	font-size: x-large;
+	font-family: "Times New Roman", Times, serif;
+}
+
+ul li { list-style: square; }
+a:hover { background-color: white; }
+
+input.err { background-color: orange; }
+
+#header{
+ width:900px;
+ background-color: orange;
+}
+
+#menu{
+ width:850px;
+ height:400px;
+ text-align:left;
+ vertical-align: top;
+ float:left;
+ background-color: aqua;
+}
+
+#body{
+ width:850px;
+ float:left;
+ background-color: white;
+}
+
+.tweet_count{
+ width:650px;
+ height:200px;
+ border:1px #F5F5F5 solid;
+}
+.userImage{
+ width:75px;
+ float:left;
+}
+
+.userInfo{
+ width:575px;
+ float:left;
+}
+
+#widget{
+	float:left;
+	width:200px;
+}
+
+#ranking{
+	float:left;
+	width:650px;
+}
+
+#footer{
+ width:900px;
+ text-align:left;
+ background-color: black;
+ color: white;
+ clear: left;
+}
+
+
