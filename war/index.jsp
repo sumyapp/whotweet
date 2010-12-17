@@ -16,13 +16,17 @@
 </div>
 <div id="body">
 <h2><font color="red"><c:out value="${errmsg}" /></font></h2>
+<h2><a href="signin">早速使ってみる</a></h2>
 <p>このサービスは、あなたのTwitterのタイムライン上で誰が最もTweetしているかを表示するサービスです<BR>
 こんな感じで表示されます。</p>
-"画像"
+<img src="img/sc.jpg" />
 <p>※こいつTweetしすぎだろ！アンフォローだ！みたいな使い方はあまり推奨は致しません。<BR>
 あくまで、"ああ、たしかにこの人のアイコンよく見かけるなぁ"ぐらいでお使いください</p>
-<a href="signin">早速使ってみる</a>
+<h2><a href="signin">早速使ってみる</a></h2>
+
+<p>動作画像はこのサイトを作った私のアカウントで撮ったものです。<br />
+写ってる方、ぼかしをいれて掲載させて頂きました。問題あればご連絡下さい。</p>
 </div>
-<div id="footer"></div>
+<div id="footer"><a href="http://blog.sumyapp.com/">Copyright 2010 sumyapp, All rights reserved.</a></div>
 </body>
 </html>

@@ -60,9 +60,7 @@ input.err { background-color: orange; }
 
 #footer{
  width:900px;
- text-align:left;
- background-color: black;
- color: white;
+ text-align:center;
  clear: left;
 }
 

@@ -17,7 +17,7 @@ import whoTweetFrequently.model.TweetCount;
 public class ResultController extends Controller {
 
     /** 調べる最大のTWEET数。800が最大 */
-    public static int MAX_GET_TWEET = 600;
+    public static int MAX_GET_TWEET = 400;
     /** ランキングの最大数*/
     public static int MAX_GET_USER = 30;
     /** 一回のTwitterへのリクエストで取得するツイート数 */
