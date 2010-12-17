@@ -18,7 +18,7 @@
 <h2><c:out value="${screen_name}" />さんのタイムライン上でつぶやいている回数ランキング！</h2>
 <div id="tweet_area">
 <form method='get' action='http://twitter.com/home'>
-	<textarea name="status" rows="5" cols="60">私がフォローしている人の中で最近一番つぶやいているのは<c:out value="${view_screen_name}" />さんでした！ http://who-tweet.sumyapp.com/ #who_tweet_frequently</textarea><br />
+	<textarea name="status" rows="5" cols="60">私がフォローしている人の中で最近一番つぶやいているのは @<c:out value="${view_screen_name}" /> さんでした！ http://who-tweet.sumyapp.com/ #who_tweet_frequently</textarea><br />
     <input type="submit" value="つぶやく" />
 </form>
 </div>
