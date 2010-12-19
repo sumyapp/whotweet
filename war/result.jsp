@@ -18,7 +18,7 @@
     <div id="logo"><a href="/"><img src="img/logo.jpg" alt="誰が1番つぶやいてるったー" /></a></div>
     <div class="social">
     <!-- Twitter -->
-    <a href="http://twitter.com/share" class="twitter-share-button" data-count="vertical" data-via="sumyapp" data-lang="ja">Tweet</a><script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>
+    <a href="http://twitter.com/share" class="twitter-share-button" data-count="vertical" data-via="sumyapp" data-lang="ja" data-url="http://who-tweet.appspot.com/" data-text="誰が1番つぶやいてるったー は自分のタイムライン上で誰が一番つぶやいてるかを知れるサービスです。 #whoTweetFrequently">Tweet</a><script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>
     <!-- facebook -->
     <iframe src="http://www.facebook.com/plugins/like.php?href=http%3A%2F%2Fwho-tweet.appspot.com%2F&amp;layout=box_count&amp;show_faces=true&amp;width=80&amp;action=like&amp;colorscheme=light&amp;height=65" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:75px; height:60px;" allowTransparency="true"></iframe>
     <!-- はてぶ -->
