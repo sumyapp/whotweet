@@ -36,7 +36,7 @@
 new TWTR.Widget({
   version: 2,
   type: 'search',
-  search: '#who_tweet_frequently',
+  search: '#whoTweetFrequently',
   interval: 6000,
   title: 'Please use this!',
   subject: '誰が一番つぶやいてるったー',

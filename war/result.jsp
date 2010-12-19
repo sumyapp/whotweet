@@ -51,6 +51,7 @@
 </div>
 <div id="widget">
 <script src="http://widgets.twimg.com/j/2/widget.js"></script>
+<p>
 <script>
 new TWTR.Widget({
   version: 2,
@@ -61,11 +62,11 @@ new TWTR.Widget({
   height: 800,
   theme: {
     shell: {
-      background: '#333333',
+      background: '#616161',
       color: '#ffffff'
     },
     tweets: {
-      background: '#000000',
+      background: '#808080',
       color: '#ffffff',
       links: '#4aed05'
     }
@@ -81,6 +82,42 @@ new TWTR.Widget({
   }
 }).render().setUser('<c:out value="${view_screen_name}" />').start();
 </script>
+</p>
+<p>
+<script>
+new TWTR.Widget({
+  version: 2,
+  type: 'search',
+  search: '#whoTweetFrequently',
+  interval: 6000,
+  title: 'Please use this!',
+  subject: '誰が一番つぶやいてるったー',
+  width: 200,
+  height: 400,
+  theme: {
+    shell: {
+      background: '#616161',
+      color: '#ffffff'
+    },
+    tweets: {
+      background: '#808080',
+      color: '#ffffff',
+      links: '#4aed05'
+    }
+  },
+  features: {
+    scrollbar: false,
+    loop: true,
+    live: false,
+    hashtags: false,
+    timestamp: false,
+    avatars: true,
+    toptweets: true,
+    behavior: 'default'
+  }
+}).render().start();
+</script>
+</p>
 </div>
 </div>
 <div id="footer">
