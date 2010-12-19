@@ -7,6 +7,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <link rel="stylesheet" href="css/global.css" type="text/css" />
+<script type="text/javascript" src="js/result_tweetarea.js"></script>
 <title>誰が一番つぶやいてるったー 調査結果</title>
 <meta name="description" content="あなたのTwitterのタイムライン上で誰が最もTweetしているかを表示するサービスです。こいつTweetしすぎだろ！アンフォローだ！みたいな使い方はあまり推奨は致しません。あくまで、「ああ、たしかにこの人のアイコンよく見かけるなぁ」ぐらいでお使いください">
 <meta name="keywords" content="Twitter,フォロー,follow,unfollow,アンフォロー,フォロワー,ツイッター,タイムライン,TL,無料,tweet,ツイート">
@@ -14,15 +15,23 @@
 </head>
 <body>
 <div id="header">
-	<h1>誰が一番つぶやいてるったー 直近400件の調査結果</h1>
+	<h1><span class="title"><a href="/">誰が一番つぶやいてるったー 直近400件の調査結果</a></span></h1>
 </div>
 <div id="body">
 <h2><c:out value="${screen_name}" />さんのタイムライン上でつぶやいている回数ランキング！</h2>
 <div id="tweet_area">
-<form method='get' action='http://twitter.com/home'>
-	<textarea name="status" rows="5" cols="60">私がフォローしている人の中で最近一番つぶやいているのは @<c:out value="${view_screen_name}" /> さんでした！ http://who-tweet.sumyapp.com/ #who_tweet_frequently</textarea><br />
-    <input type="submit" value="つぶやく" />
-</form>
+	<div id="tweet_area_form">
+		<form method='get' action='http://twitter.com/home' name="twitter_tweet_form">
+			<textarea name="status" rows="5" cols="60">私がフォローしている人の中で最近一番つぶやいているのは @<c:out value="${view_screen_name}" /> さんでした！ http://bit.ly/fI8zyA #whoTweetFrequently</textarea><br />
+    		<input type="submit" value="つぶやく" />
+		</form>
+	</div>
+	<div id="tweet_area_menu">
+		クイック編集
+		<input type="button" value="好きです！" onclick="love()" />
+		<input type="button" value="いつも見てます！" onclick="always()" />
+		<input type="button" value="おすすめ！" onclick="recommend()" />
+	</div>
 </div>
 <div id="ranking">
 <c:forEach var="e" items="${tweet_count_list}">
@@ -41,7 +50,6 @@
 </c:forEach>
 </div>
 <div id="widget">
-<c:out value="${view_screen_name}" />さんのTweet
 <script src="http://widgets.twimg.com/j/2/widget.js"></script>
 <script>
 new TWTR.Widget({
@@ -75,6 +83,9 @@ new TWTR.Widget({
 </script>
 </div>
 </div>
-<div id="footer"><a href="http://blog.sumyapp.com/">Copyright 2010 sumyapp, All rights reserved.</a></div>
+<div id="footer">
+	<a href="http://blog.sumyapp.com/">Copyright 2010 sumyapp, All rights reserved.</a>
+	<span class="tweet_share_button"><a href="http://www.twitter.com/sumyapp"><img src="http://twitter-badges.s3.amazonaws.com/t_small-a.png" alt="sumyappをフォローしましょう"/></a></span>
+</div>
 </body>
 </html>

@@ -18,6 +18,22 @@ input.err { background-color: orange; }
  background-color: orange;
 }
 
+#header a {
+text-decoration: none;
+}
+#header a:link {
+color: #000000;
+}
+#header a:visited {
+color: #000000;
+}
+#header a:active {
+color: #000000;
+}
+#header a:hover {
+color: #000000;
+}
+
 #menu{
  width:850px;
  height:400px;
@@ -31,6 +47,11 @@ input.err { background-color: orange; }
  width:850px;
  float:left;
  background-color: white;
+}
+
+#siteinfo{
+ width:850px;
+ float:left;
 }
 
 .tweet_count{
@@ -48,14 +69,37 @@ input.err { background-color: orange; }
  float:left;
 }
 
+#siteinfo_center{
+ width:650px;
+ float:left;	
+}
+
+#siteinfo_bottom{
+ width:850px;
+ float:left;
+}
+
 #widget{
-	float:left;
-	width:200px;
+ float:left;
+ width:200px;
 }
 
 #ranking{
-	float:left;
-	width:650px;
+ float:left;
+ width:650px;
+}
+
+#tweet_area{
+ width:650px;
+ float:left;
+}
+#tweet_area_menu{
+ width:100px;
+ float:left;	
+}
+#tweet_area_form{
+ width:450px;
+ float:left;
 }
 
 #footer{
@@ -64,4 +108,6 @@ input.err { background-color: orange; }
  clear: left;
 }
 
-
+.tweet_share_button{
+ padding-left:5px;
+}
