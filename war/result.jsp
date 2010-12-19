@@ -6,34 +6,43 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<link rel="stylesheet" href="css/global.css" type="text/css" />
 <script type="text/javascript" src="js/result_tweetarea.js"></script>
-<title>誰が一番つぶやいてるったー 調査結果</title>
 <meta name="description" content="あなたのTwitterのタイムライン上で誰が最もTweetしているかを表示するサービスです。こいつTweetしすぎだろ！アンフォローだ！みたいな使い方はあまり推奨は致しません。あくまで、「ああ、たしかにこの人のアイコンよく見かけるなぁ」ぐらいでお使いください">
 <meta name="keywords" content="Twitter,フォロー,follow,unfollow,アンフォロー,フォロワー,ツイッター,タイムライン,TL,無料,tweet,ツイート">
-<c:set var="i" value="0" />
+<link href="css/global.css" rel="stylesheet" type="text/css" />
+<title>誰が1番つぶやいてるったー</title>
 </head>
 <body>
-<div id="header">
-	<h1><span class="title"><a href="/">誰が一番つぶやいてるったー 直近400件の調査結果</a></span></h1>
-</div>
-<div id="body">
-<h2><c:out value="${screen_name}" />さんのタイムライン上でつぶやいている回数ランキング！</h2>
-<div id="tweet_area">
-	<div id="tweet_area_form">
-		<form method='get' action='http://twitter.com/home' name="twitter_tweet_form">
-			<textarea name="status" rows="5" cols="60">私がフォローしている人の中で最近一番つぶやいているのは @<c:out value="${view_screen_name}" /> さんでした！ http://bit.ly/fI8zyA #whoTweetFrequently</textarea><br />
-    		<input type="submit" value="つぶやく" />
-		</form>
-	</div>
-	<div id="tweet_area_menu">
-		クイック編集
-		<input type="button" value="好きです！" onclick="love()" />
-		<input type="button" value="いつも見てます！" onclick="always()" />
-		<input type="button" value="おすすめ！" onclick="recommend()" />
-	</div>
-</div>
-<div id="ranking">
+<div id="content">
+  <div id="header">
+    <div id="logo"><a href="/"><img src="img/logo.jpg" alt="誰が1番つぶやいてるったー" /></a></div>
+    <div class="social">
+    <!-- Twitter -->
+    <a href="http://twitter.com/share" class="twitter-share-button" data-count="vertical" data-via="sumyapp" data-lang="ja">Tweet</a><script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>
+    <!-- facebook -->
+    <iframe src="http://www.facebook.com/plugins/like.php?href=http%3A%2F%2Fwho-tweet.appspot.com%2F&amp;layout=box_count&amp;show_faces=true&amp;width=80&amp;action=like&amp;colorscheme=light&amp;height=65" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:75px; height:60px;" allowTransparency="true"></iframe>
+    <!-- はてぶ -->
+    <a href="http://b.hatena.ne.jp/entry/http://who-tweet.appspot.com/" class="hatena-bookmark-button" data-hatena-bookmark-title="誰が1番つぶやいてるったー" data-hatena-bookmark-layout="vertical" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only.gif" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+    <!-- お気に入り -->
+    </div><br class="clear" />
+    <h1><span class="title"> <a href="/">誰が1番つぶやいてるったー 直近400件の調査結果</a></span></h1>
+  </div>
+  <h2><img src="img/icon_1.jpg" width="30" height="20" class="sp" /><c:out value="${screen_name}" />さんのタイムライン上でつぶやいている回数ランキング！</h2>
+  <div id="tweet_area">
+    <div id="tweet_area_form">
+    <div id="tweet_area_menu">クイック編集(ぜひ押して下さい！下記メッセージにボタンと同様の内容を追記出来ます)<br />
+      <input type="button" value="好きです！" onclick="love()" />
+      <input type="button" value="いつも見てます！" onclick="always()" />
+      <input type="button" value="おすすめ！" onclick="recommend()" />
+    </div>
+      <form method='get' action='http://twitter.com/home' name="twitter_tweet_form">
+        <textarea name="status" rows="5" cols="60">私がフォローしている人の中で最近一番つぶやいているのは @<c:out value="${view_screen_name}" /> さんでした！ http://bit.ly/fI8zyA #whoTweetFrequently</textarea>
+        <br />
+        <input type="submit" value="つぶやく" />
+      </form>
+    </div>
+  </div>
+  <div id="ranking">
 <c:forEach var="e" items="${tweet_count_list}">
 <c:set var="u" value="${e.user}"/>
 <c:set var="i" value="${i+1}" />
@@ -48,7 +57,8 @@
 	</span>
 </div>
 </c:forEach>
-</div>
+  </div>
+<div id="menu">
 <div id="widget">
 <script src="http://widgets.twimg.com/j/2/widget.js"></script>
 <p>
@@ -118,11 +128,12 @@ new TWTR.Widget({
 }).render().start();
 </script>
 </p>
+<br class="clear" />
 </div>
-</div>
-<div id="footer">
-	<a href="http://blog.sumyapp.com/">Copyright 2010 sumyapp, All rights reserved.</a>
-	<span class="tweet_share_button"><a href="http://www.twitter.com/sumyapp"><img src="http://twitter-badges.s3.amazonaws.com/t_small-a.png" alt="sumyappをフォローしましょう"/></a></span>
+    <br class="clear" />
+  </div>
+  <br class="clear" />
+<div id="footer"> <a href="http://blog.sumyapp.com/">Copyright 2010 sumyapp, All rights reserved.</a> <span class="tweet_share_button"><a href="http://www.twitter.com/sumyapp"><img src="http://twitter-badges.s3.amazonaws.com/t_small-a.png" alt="sumyappをフォローしましょう"/></a></span> </div>
 </div>
 </body>
 </html>

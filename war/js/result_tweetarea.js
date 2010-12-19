@@ -21,3 +21,13 @@ function always() {
     var newStr=oldStr.replace(/\shttp/,"いつも見させて頂いています！ http");
 	objTextarea.value = newStr;
 }
+
+function addBookmark(title,url) {
+    if (window.sidebar) {
+        window.sidebar.addPanel(title, url,"");
+    } else if( document.all ) {
+        window.external.AddFavorite( url, title);
+    } else if( window.opera && window.print ) {
+        return true;
+    }
+}

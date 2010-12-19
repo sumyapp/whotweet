@@ -55,19 +55,11 @@ input.err { background-color: orange; }
 #logo{
 	  width:540px;
 	  height:115px;
-	  margin:10px 0px 20px 20px;
-	  float:left;
+	  margin:20px;
   }
-.social{
-	width:300px;
-	height:80px;
-	margin-top:60px;
-	float:left;	
-}
   
 
 .title{
-	clear:both;
 	color:#FFF
 	}
 
@@ -84,6 +76,11 @@ input.err { background-color: orange; }
 	background-color: white;
 }
 
+#siteinfo{
+	width:850px;
+	float:left;
+}
+
 #menu{
 	width:200px;
 	float:left;
@@ -91,49 +88,28 @@ input.err { background-color: orange; }
 
 .tweet_count{
 	width:650px;
-	height:180px;
+	height:200px;
 	border-bottom:2px #F5F5F5 dotted;
 }
-
 
 .userImage{
 	border:1px #999;
 	float:left;
 	padding:0 10px 10px 0;
 	width:77px;
-	float:left;
+	clear:left;
 }
 
 .userInfo{
-	width:550px;
 	float:left;
 }
 
-
-#siteinfo{
-	padding:0px 20px;
-	width:850px;
-	float:left;
-}
-
-#siteinfo_top{
-	width:800px;
-	float:left;
-}
-
-#siteinfo_center{
-	width:650px;
-	float:left;	
-}
 
 #siteinfo_bottom{
-	width:830px;
-	float:left;
 }
 
 #widget{
-	float:left;
-	width:200px;
+
 }
 
 #ranking{
