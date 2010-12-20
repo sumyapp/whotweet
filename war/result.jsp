@@ -27,15 +27,21 @@
     </div><br class="clear" />
     <h1><span class="title"> <a href="/">誰が1番つぶやいてるったー 直近400件の調査結果</a></span></h1>
   </div>
-  <h2><img src="img/icon_1.jpg" width="30" height="20" class="sp" /><c:out value="${screen_name}" />さんのタイムライン上でつぶやいている回数ランキング！</h2>
+  <h2>
+	<img src="img/icon_1.jpg" width="30" height="20" class="sp" />
+	<!-- Access user's screen name --><c:out value="${screen_name}" />
+	さんのタイムライン上でつぶやいている回数ランキング！
+  </h2>
   <div id="tweet_area">
     <div id="tweet_area_form">
     <div id="tweet_area_menu">クイック編集(ぜひ押して下さい！下記メッセージにボタンと同様の内容を追記出来ます)<br />
+	  <!-- quick edit menu(JavaScript) -->
       <input type="button" value="好きです！" onclick="love()" />
       <input type="button" value="いつも見てます！" onclick="always()" />
       <input type="button" value="おすすめ！" onclick="recommend()" />
     </div>
-      <form method='get' action='http://twitter.com/home' name="twitter_tweet_form">
+	  <!-- Tweet form -->
+      <form method="get" action="http://twitter.com/home" name="twitter_tweet_form">
         <textarea name="status" rows="5" cols="60">私がフォローしている人の中で最近一番つぶやいているのは @<c:out value="${view_screen_name}" /> さんでした！ http://bit.ly/fI8zyA #whoTweetFrequently</textarea>
         <br />
         <input type="submit" value="つぶやく" />
@@ -46,19 +52,26 @@
 <c:forEach var="e" items="${tweet_count_list}">
 <c:set var="u" value="${e.user}"/>
 <c:set var="i" value="${i+1}" />
+<!-- View twitter user sort by tweet count -->
 <div class="tweet_count">
+	<!-- View twitter user's profile image -->
 	<span class="userImage">
 		<a href="http://twitter.com/${f:h(u.screenName)}" title="${f:h(u.screenName)}" target="_blank"><img src="${f:h(u.profileImageURL)}" height=75 width=75 alt="${f:h(u.screenName)}"/></a>
 	</span>
+	<!-- View twitter user's profile -->
 	<span class="userInfo">
+		<!-- View twitter user's screen name and tweet count -->
 		<c:out value="${i}" />位: ${f:h(e.tweetCount)}回: <a href="http://twitter.com/${f:h(u.screenName)}" target="_blank">${f:h(u.screenName)}</a><br />
+		<!-- View twitter user's profile(Following, follower, tweet count -->
 		Tweet[${f:h(u.statusesCount)}] | Following[${f:h(u.friendsCount)}] | Followers[${f:h(u.followersCount)}]<br />
+		<!-- View twitter user's profile detail -->
 		${f:h(u.description)}
 	</span>
 </div>
 </c:forEach>
   </div>
 <div id="menu">
+<!-- Twitter widget, view no1 user's timeline -->
 <div id="widget">
 <script src="http://widgets.twimg.com/j/2/widget.js"></script>
 <p>
@@ -93,6 +106,7 @@ new TWTR.Widget({
 }).render().setUser('<c:out value="${view_screen_name}" />').start();
 </script>
 </p>
+<!-- Twitter widget, view this site's timeline -->
 <p>
 <script>
 new TWTR.Widget({
