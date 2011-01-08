@@ -32,6 +32,10 @@ public class SigninController extends Controller {
             return redirect(requestToken.getAuthenticationURL());
         } catch (TwitterException e) {
             request.setAttribute("errmsg", "Twitterとの通信に失敗しました。時間をおいてお試しください。");
+        } catch (Exception e) {
+            // エラーの場合
+            request.setAttribute("errmsg", "Twitterとの通信に失敗しました。時間をおいてお試しください。");
+            return forward("index.jsp");
         }
         // エラーの場合
         return forward("index.jsp");

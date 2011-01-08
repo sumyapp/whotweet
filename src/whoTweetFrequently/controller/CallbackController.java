@@ -21,7 +21,11 @@ public class CallbackController extends Controller {
             request.getSession().removeAttribute("requestToken");
         } catch (TwitterException e) {
             // エラーの場合
-            request.setAttribute("errmsg", "例外エラーが発生しました。時間をおいてお試しください。");
+            request.setAttribute("errmsg", "Twitterとの通信に失敗しました。時間をおいてお試しください。");
+            return forward("index.jsp");
+        } catch(Exception e){
+         // エラーの場合
+            request.setAttribute("errmsg", "Twitterとの通信に失敗しました。時間をおいてお試しください。");
             return forward("index.jsp");
         }
 
