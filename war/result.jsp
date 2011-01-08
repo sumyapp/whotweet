@@ -25,7 +25,7 @@
     <a href="http://b.hatena.ne.jp/entry/http://who-tweet.appspot.com/" class="hatena-bookmark-button" data-hatena-bookmark-title="誰が1番つぶやいてるったー" data-hatena-bookmark-layout="vertical" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only.gif" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
     <!-- お気に入り -->
     </div><br class="clear" />
-    <h1><span class="title"> <a href="/">誰が1番つぶやいてるったー 直近400件の調査結果</a></span></h1>
+    <h1><span class="title"> <a href="/">誰が1番つぶやいてるったー 直近<c:out value="${limit}" />件の調査結果</a></span></h1>
   </div>
   <h2>
 	<img src="img/icon_1.jpg" width="30" height="20" class="sp" />
@@ -69,6 +69,7 @@
 	</span>
 </div>
 </c:forEach>
+<h4><a href="result?limit=800">直近800件まででのつぶやいている回数ランキング</a></h4>
   </div>
 <div id="menu">
 <!-- Twitter widget, view no1 user's timeline -->
@@ -82,7 +83,7 @@ new TWTR.Widget({
   rpp: 10,
   interval: 6000,
   width: 200,
-  height: 800,
+  height: 350,
   theme: {
     shell: {
       background: '#616161',
@@ -108,13 +109,14 @@ new TWTR.Widget({
 </p>
 <!-- Twitter widget, view this site's timeline -->
 <p>
+<script src="http://widgets.twimg.com/j/2/widget.js"></script>
 <script>
 new TWTR.Widget({
   version: 2,
   type: 'search',
   search: '#whoTweetFrequently',
   interval: 6000,
-  title: 'Please use this!',
+  title: '使ってみてね！',
   subject: '誰が一番つぶやいてるったー',
   width: 200,
   height: 400,
@@ -126,15 +128,15 @@ new TWTR.Widget({
     tweets: {
       background: '#808080',
       color: '#ffffff',
-      links: '#4aed05'
+      links: '#46cc0c'
     }
   },
   features: {
     scrollbar: false,
     loop: true,
-    live: false,
+    live: true,
     hashtags: false,
-    timestamp: false,
+    timestamp: true,
     avatars: true,
     toptweets: true,
     behavior: 'default'

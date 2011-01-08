@@ -2,7 +2,11 @@ package whoTweetFrequently.controller;
 
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import org.slim3.controller.Controller;
 import org.slim3.controller.Navigation;
@@ -23,6 +27,9 @@ public class ResultController extends Controller {
     /** 一回のTwitterへのリクエストで取得するツイート数 */
     public static final int GET_TWEET_COUNT_AT_ONCE = 200;
 
+    private static final Logger logger = Logger.getLogger(Controller.class
+        .getName());
+
     @SuppressWarnings("unchecked")
     @Override
     public Navigation run() throws Exception {
@@ -38,9 +45,16 @@ public class ResultController extends Controller {
             (Twitter) request.getSession().getAttribute("twitter");
         try {
             request.setAttribute("screen_name", twitter.getScreenName());
-            request.setAttribute(
-                "tweet_count_list",
-                getTweetCountList(twitter, MAX_GET_TWEET));
+            if (request.getParameter("limit") != null && new Integer((String)request.getParameter("limit")) > MAX_GET_TWEET) {
+                System.out.println("limit manual select mode");
+                request.setAttribute("tweet_count_list",  getTweetCountList(twitter, new Integer((String)request.getParameter("limit"))));
+                request.setAttribute("limit", (new Integer((String)request.getParameter("limit")).intValue()));
+            } else {
+                request.setAttribute(
+                    "tweet_count_list",
+                    getTweetCountList(twitter, MAX_GET_TWEET));
+                request.setAttribute("limit", MAX_GET_TWEET);
+            }
             request.setAttribute(
                 "view_screen_name",
                 ((ArrayList<TweetCount>) request
@@ -50,13 +64,22 @@ public class ResultController extends Controller {
                     .getScreenName());
         } catch (TwitterException e) {
             // エラーの場合
+            if (logger.isLoggable(Level.WARNING)) {
+                logger.log(Level.WARNING, "TwitterException", e);
+            }
             request.setAttribute("errmsg", "Twitterとの通信に失敗しました。時間をおいてお試しください。");
             return forward("index.jsp");
         } catch (IllegalStateException e) {
             // エラーの場合
+            if (logger.isLoggable(Level.WARNING)) {
+                logger.log(Level.WARNING, "IllegalStateException", e);
+            }
             request.setAttribute("errmsg", "Twitterとの通信に失敗しました。時間をおいてお試しください。");
             return forward("index.jsp");
         } catch (Exception e) {
+            if (logger.isLoggable(Level.WARNING)) {
+                logger.log(Level.WARNING, "Exception", e);
+            }
             request.setAttribute("errmsg", "Twitterとの通信に失敗しました。時間をおいてお試しください。");
             return forward("index.jsp");
         }
@@ -80,6 +103,8 @@ public class ResultController extends Controller {
                 i,
                 GET_TWEET_COUNT_AT_ONCE)));
         }
+        System.out.println("getHomeTimeline[count] = " + statuses.size());
+        
         // Userごとに出現数をカウント
         for (Status status : statuses) {
             if (countMap.containsKey(status.getUser().getId())) {
@@ -93,28 +118,29 @@ public class ResultController extends Controller {
             }
         }
 
-        // System.out.println("getTweetCountList: Start sort, countMap = " +
-        // countMap.toString());
-
+        System.out.println("sort start: countMap");
         ArrayList<TweetCount> sortedList = new ArrayList<TweetCount>();
-        for (int i = 0; i < countMap.values().size(); i++) {
-            int maxCount = 0;
-            int maxCountUserKey = 0;
-            for (TweetCount tw : countMap.values()) {
-                // System.out.print("■");
-                if (tw.getTweetCount() > maxCount) {
-                    // System.out.print("□");
-                    maxCount = tw.getTweetCount();
-                    maxCountUserKey = tw.getUser().getId();
-                }
+        sortedList.addAll(countMap.values());
+
+        Collections.sort(sortedList, new Comparator<TweetCount>() {
+            public int compare(TweetCount tw1, TweetCount tw2) {
+                Integer val1 = tw1.getTweetCount();
+                Integer val2 = tw2.getTweetCount();
+                return -val1.compareTo(val2);
             }
-            sortedList.add(countMap.get(maxCountUserKey));
-            countMap.remove(maxCountUserKey);
-            if (sortedList.size() >= MAX_GET_USER) {
-                return sortedList;
+        });
+
+        System.out.println("sort end: sortedList.size = " + sortedList.size());
+
+        if (sortedList.size() > MAX_GET_USER) {
+            for (int i = sortedList.size() - 1; i >= MAX_GET_USER; i--) {
+                sortedList.remove(i);
             }
-            // System.out.print("\n");
         }
+        System.out
+            .println("remove end: sortedList.size = " + sortedList.size());
+
         return sortedList;
     }
+
 }

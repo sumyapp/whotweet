@@ -50,7 +50,7 @@ new TWTR.Widget({
   type: 'search',
   search: '#whoTweetFrequently',
   interval: 6000,
-  title: 'Please use this!',
+  title: '使ってみてね！',
   subject: '誰が一番つぶやいてるったー',
   width: 200,
   height: 400,
@@ -62,15 +62,15 @@ new TWTR.Widget({
     tweets: {
       background: '#808080',
       color: '#ffffff',
-      links: '#4aed05'
+      links: '#46cc0c'
     }
   },
   features: {
     scrollbar: false,
     loop: true,
-    live: false,
+    live: true,
     hashtags: false,
-    timestamp: false,
+    timestamp: true,
     avatars: true,
     toptweets: true,
     behavior: 'default'
