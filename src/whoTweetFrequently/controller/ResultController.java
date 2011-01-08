@@ -18,11 +18,12 @@ public class ResultController extends Controller {
 
     /** 調べる最大のTWEET数。800が最大 */
     public static int MAX_GET_TWEET = 400;
-    /** ランキングの最大数*/
+    /** ランキングの最大数 */
     public static int MAX_GET_USER = 30;
     /** 一回のTwitterへのリクエストで取得するツイート数 */
     public static final int GET_TWEET_COUNT_AT_ONCE = 200;
-    
+
+    @SuppressWarnings("unchecked")
     @Override
     public Navigation run() throws Exception {
         // このファクトリインスタンスは再利用可能でスレッドセーフです
@@ -37,16 +38,25 @@ public class ResultController extends Controller {
             (Twitter) request.getSession().getAttribute("twitter");
         try {
             request.setAttribute("screen_name", twitter.getScreenName());
-            request
-                .setAttribute("tweet_count_list", getTweetCountList(twitter, MAX_GET_TWEET));
-            request
-            .setAttribute("view_screen_name", ((ArrayList<TweetCount>)request.getAttribute("tweet_count_list")).get(0).getUser().getScreenName());
+            request.setAttribute(
+                "tweet_count_list",
+                getTweetCountList(twitter, MAX_GET_TWEET));
+            request.setAttribute(
+                "view_screen_name",
+                ((ArrayList<TweetCount>) request
+                    .getAttribute("tweet_count_list"))
+                    .get(0)
+                    .getUser()
+                    .getScreenName());
         } catch (TwitterException e) {
             // エラーの場合
             request.setAttribute("errmsg", "Twitterとの通信に失敗しました。時間をおいてお試しください。");
             return forward("index.jsp");
         } catch (IllegalStateException e) {
             // エラーの場合
+            request.setAttribute("errmsg", "Twitterとの通信に失敗しました。時間をおいてお試しください。");
+            return forward("index.jsp");
+        } catch (Exception e) {
             request.setAttribute("errmsg", "Twitterとの通信に失敗しました。時間をおいてお試しください。");
             return forward("index.jsp");
         }
@@ -59,12 +69,16 @@ public class ResultController extends Controller {
         // タイムラインを取得
         HashMap<Integer, TweetCount> countMap =
             new HashMap<Integer, TweetCount>();
-        
-        //System.out.println("getTweetCountList: Got home timeline, timeline = " + twitter.getHomeTimeline().toString());
-        ResponseList<Status> statuses = twitter.getHomeTimeline(new Paging(1, GET_TWEET_COUNT_AT_ONCE));
+
+        // System.out.println("getTweetCountList: Got home timeline, timeline = "
+        // + twitter.getHomeTimeline().toString());
+        ResponseList<Status> statuses =
+            twitter.getHomeTimeline(new Paging(1, GET_TWEET_COUNT_AT_ONCE));
         int imax = max / GET_TWEET_COUNT_AT_ONCE + 1;
-        for(int i = 2; i < imax; i++){
-            statuses.addAll(twitter.getHomeTimeline(new Paging(i, GET_TWEET_COUNT_AT_ONCE)));
+        for (int i = 2; i < imax; i++) {
+            statuses.addAll(twitter.getHomeTimeline(new Paging(
+                i,
+                GET_TWEET_COUNT_AT_ONCE)));
         }
         // Userごとに出現数をカウント
         for (Status status : statuses) {
@@ -78,27 +92,28 @@ public class ResultController extends Controller {
                 countMap.put(status.getUser().getId(), tw);
             }
         }
-        
-        //System.out.println("getTweetCountList: Start sort, countMap = " + countMap.toString());
+
+        // System.out.println("getTweetCountList: Start sort, countMap = " +
+        // countMap.toString());
 
         ArrayList<TweetCount> sortedList = new ArrayList<TweetCount>();
-        for(int i = 0; i < countMap.values().size(); i++) {
+        for (int i = 0; i < countMap.values().size(); i++) {
             int maxCount = 0;
             int maxCountUserKey = 0;
             for (TweetCount tw : countMap.values()) {
-                //System.out.print("■");
+                // System.out.print("■");
                 if (tw.getTweetCount() > maxCount) {
-                    //System.out.print("□");
+                    // System.out.print("□");
                     maxCount = tw.getTweetCount();
                     maxCountUserKey = tw.getUser().getId();
                 }
             }
             sortedList.add(countMap.get(maxCountUserKey));
             countMap.remove(maxCountUserKey);
-            if(sortedList.size() >= MAX_GET_USER){
+            if (sortedList.size() >= MAX_GET_USER) {
                 return sortedList;
             }
-            //System.out.print("\n");
+            // System.out.print("\n");
         }
         return sortedList;
     }
