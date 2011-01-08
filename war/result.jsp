@@ -6,11 +6,24 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<script type="text/javascript" src="js/result_tweetarea.js"></script>
+<title>誰が1番つぶやいてるったー</title>
 <meta name="description" content="あなたのTwitterのタイムライン上で誰が最もTweetしているかを表示するサービスです。こいつTweetしすぎだろ！アンフォローだ！みたいな使い方はあまり推奨は致しません。あくまで、「ああ、たしかにこの人のアイコンよく見かけるなぁ」ぐらいでお使いください">
 <meta name="keywords" content="Twitter,フォロー,follow,unfollow,アンフォロー,フォロワー,ツイッター,タイムライン,TL,無料,tweet,ツイート">
-<link href="css/global.css" rel="stylesheet" type="text/css" />
-<title>誰が1番つぶやいてるったー</title>
+<link rel="stylesheet" href="css/global.css" type="text/css" />
+<script type="text/javascript" src="js/result_tweetarea.js"></script>
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-20627316-2']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
 </head>
 <body>
 <div id="content">
@@ -83,7 +96,7 @@ new TWTR.Widget({
   rpp: 10,
   interval: 6000,
   width: 200,
-  height: 350,
+  height: 450,
   theme: {
     shell: {
       background: '#616161',
@@ -119,7 +132,7 @@ new TWTR.Widget({
   title: '使ってみてね！',
   subject: '誰が一番つぶやいてるったー',
   width: 200,
-  height: 400,
+  height: 450,
   theme: {
     shell: {
       background: '#616161',
