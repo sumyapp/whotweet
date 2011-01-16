@@ -82,7 +82,7 @@
 	</span>
 </div>
 </c:forEach>
-<h4>もっち見たい方はこちら→<a href="result?limit=800">直近800件まででのつぶやいている回数ランキング</a></h4>
+<h4>もっと見たい方はこちら→<a href="result?limit=800">直近800件まででのつぶやいている回数ランキング</a></h4>
   </div>
 <div id="menu">
 <div id="widget">
