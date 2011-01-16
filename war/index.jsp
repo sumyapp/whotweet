@@ -93,6 +93,19 @@ new TWTR.Widget({
 <div id="siteinfo_bottom">
 <p>動作画像はこのサイトを作った私のアカウントで撮ったものです。<br />
 写ってる方、ぼかしをいれて掲載させて頂きました。問題あればご連絡下さい。</p>
+<div id="ad_siteinfo_bottom">
+<script type="text/javascript"><!--
+google_ad_client = "ca-pub-8191769320717387";
+/* 誰が1番つぶやいてるったー(横) */
+google_ad_slot = "5778637523";
+google_ad_width = 728;
+google_ad_height = 90;
+//-->
+</script>
+<script type="text/javascript"
+src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+</div>
 </div>
 </div>
 </div>

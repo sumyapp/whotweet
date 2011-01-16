@@ -82,11 +82,24 @@
 	</span>
 </div>
 </c:forEach>
-<h4><a href="result?limit=800">直近800件まででのつぶやいている回数ランキング</a></h4>
+<h4>もっち見たい方はこちら→<a href="result?limit=800">直近800件まででのつぶやいている回数ランキング</a></h4>
   </div>
 <div id="menu">
-<!-- Twitter widget, view no1 user's timeline -->
 <div id="widget">
+<div id="ad_widget">
+<script type="text/javascript"><!--
+google_ad_client = "ca-pub-8191769320717387";
+/* 誰が1番つぶやいてるったー(縦) */
+google_ad_slot = "7138442054";
+google_ad_width = 160;
+google_ad_height = 600;
+//-->
+</script>
+<script type="text/javascript"
+src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+</div>
+<!-- Twitter widget, view no1 user's timeline -->
 <script src="http://widgets.twimg.com/j/2/widget.js"></script>
 <p>
 <script>
