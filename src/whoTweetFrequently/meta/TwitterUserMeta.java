@@ -1,6 +1,6 @@
 package whoTweetFrequently.meta;
 
-//@javax.annotation.Generated(value = { "slim3-gen", "@VERSION@" }, date = "2011-01-16 10:12:46")
+//@javax.annotation.Generated(value = { "slim3-gen", "@VERSION@" }, date = "2011-03-06 10:40:43")
 /** */
 public final class TwitterUserMeta extends org.slim3.datastore.ModelMeta<whoTweetFrequently.model.TwitterUser> {
 
