@@ -17,7 +17,6 @@ import twitter4j.Status;
 import twitter4j.Twitter;
 import twitter4j.TwitterException;
 import whoTweetFrequently.model.TweetCount;
-import whoTweetFrequently.service.WhoTweetFrequentlyService;
 
 public class ResultController extends Controller {
 
@@ -46,9 +45,17 @@ public class ResultController extends Controller {
             (Twitter) request.getSession().getAttribute("twitter");
         try {
             request.setAttribute("screen_name", twitter.getScreenName());
-            if (request.getParameter("limit") != null && new Integer((String)request.getParameter("limit")) > MAX_GET_TWEET) {
-                request.setAttribute("tweet_count_list",  getTweetCountList(twitter, new Integer((String)request.getParameter("limit"))));
-                request.setAttribute("limit", (new Integer((String)request.getParameter("limit")).intValue()));
+            if (request.getParameter("limit") != null
+                && new Integer((String) request.getParameter("limit")) > MAX_GET_TWEET) {
+                request.setAttribute(
+                    "tweet_count_list",
+                    getTweetCountList(
+                        twitter,
+                        new Integer((String) request.getParameter("limit"))));
+                request.setAttribute(
+                    "limit",
+                    (new Integer((String) request.getParameter("limit"))
+                        .intValue()));
             } else {
                 request.setAttribute(
                     "tweet_count_list",
@@ -62,16 +69,19 @@ public class ResultController extends Controller {
                     .get(0)
                     .getUser()
                     .getScreenName());
-            
-            WhoTweetFrequentlyService service = new WhoTweetFrequentlyService();
-            if(!service.addTwitterUser(new Long(twitter.getId()), twitter.getScreenName())){
-                if (logger.isLoggable(Level.WARNING)) {
-                    logger.log(Level.WARNING, "Database function is failed");
-                }
-            }
+
+            // 使わないデータに容量を使ってもしょうがないので
+            // WhoTweetFrequentlyService service = new
+            // WhoTweetFrequentlyService();
+            // if(!service.addTwitterUser(new Long(twitter.getId()),
+            // twitter.getScreenName())){
+            // if (logger.isLoggable(Level.WARNING)) {
+            // logger.log(Level.WARNING, "Database function is failed");
+            // }
+            // }
             // test用
             // System.out.println("getAll:" + service.getAll().toString());
-            
+
         } catch (TwitterException e) {
             // エラーの場合
             if (logger.isLoggable(Level.WARNING)) {
@@ -113,7 +123,7 @@ public class ResultController extends Controller {
                 i,
                 GET_TWEET_COUNT_AT_ONCE)));
         }
-        
+
         // Userごとに出現数をカウント
         for (Status status : statuses) {
             if (countMap.containsKey(status.getUser().getId())) {
