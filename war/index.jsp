@@ -45,13 +45,15 @@
 <h2><font color="red"><c:out value="${errmsg}" /></font></h2>
 <div id="siteinfo_top">
 <h2><a href="signin">早速使ってみる</a></h2>
-<p>このサービスは、あなたのTwitterのタイムライン上で誰が最もTweetしているかを表示するサービスです<BR>
-こんな感じで表示されます。</p>
+<p>このサービスは、あなたのTwitterのタイムライン上で誰が最もTweetしているかを表示するサービスです</p>
+<p>
+  こんな感じで表示されます。
+</p>
 </div>
 <div id="siteinfo_center">
 <img src="img/sc.jpg" />
 <p>※こいつTweetしすぎだろ！アンフォローだ！みたいな使い方は推奨致しません。<br />
-"ああ、たしかにこの人のアイコンよく見かけるなぁ"ぐらいでお使いください</p>
+  "ああ、たしかにこの人のアイコンよく見かけるなぁ"ぐらいでお使いください</p>
 <h2><a href="signin">早速使ってみる</a></h2>
 </div>
 <div id="widget">
@@ -92,7 +94,11 @@ new TWTR.Widget({
 </div>
 <div id="siteinfo_bottom">
 <p>動作画像はこのサイトを作った私のアカウントで撮ったものです。<br />
-写ってる方、ぼかしをいれて掲載させて頂きました。問題あればご連絡下さい。</p>
+  写ってる方、ぼかしをいれて掲載させて頂きました。問題あればご連絡下さい。</p>
+<p>
+  <b>※2013/6/18 Twitterの新APIに対応。動作しなくなっていた問題を解消しました。申し訳ございませんでした。</b>
+</p>  
+
 <div id="ad_siteinfo_bottom">
 <script type="text/javascript"><!--
 google_ad_client = "ca-pub-8191769320717387";
