@@ -110,8 +110,7 @@ public class ResultController extends Controller {
     private ArrayList<TweetCount> getTweetCountList(Twitter twitter, int max)
             throws TwitterException {
         // タイムラインを取得
-        HashMap<Integer, TweetCount> countMap =
-            new HashMap<Integer, TweetCount>();
+        HashMap<Long, TweetCount> countMap = new HashMap<Long, TweetCount>();
 
         // System.out.println("getTweetCountList: Got home timeline, timeline = "
         // + twitter.getHomeTimeline().toString());

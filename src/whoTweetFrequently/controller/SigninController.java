@@ -6,7 +6,7 @@ import org.slim3.controller.Navigation;
 import twitter4j.Twitter;
 import twitter4j.TwitterException;
 import twitter4j.TwitterFactory;
-import twitter4j.http.RequestToken;
+import twitter4j.auth.RequestToken;
 
 public class SigninController extends Controller {
     public static final String CONSUMER_KEY = "ju7qdNdVJtc0yN672GS1mg";
@@ -15,7 +15,8 @@ public class SigninController extends Controller {
 
     @Override
     public Navigation run() throws Exception {
-        Twitter twitter = new TwitterFactory().getInstance();
+        TwitterFactory factory = new TwitterFactory();
+        Twitter twitter = factory.getInstance();
         twitter.setOAuthConsumer(CONSUMER_KEY, CONSUMER_SECRET);
 
         request.getSession().setAttribute("twitter", twitter);
@@ -27,6 +28,7 @@ public class SigninController extends Controller {
 
             RequestToken requestToken =
                 twitter.getOAuthRequestToken(callbackURL.toString());
+
             request.getSession().setAttribute("requestToken", requestToken);
             // twitterにリダイレクト
             return redirect(requestToken.getAuthenticationURL());

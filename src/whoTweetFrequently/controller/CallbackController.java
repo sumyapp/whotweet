@@ -5,7 +5,7 @@ import org.slim3.controller.Navigation;
 
 import twitter4j.Twitter;
 import twitter4j.TwitterException;
-import twitter4j.http.RequestToken;
+import twitter4j.auth.RequestToken;
 
 public class CallbackController extends Controller {
 
