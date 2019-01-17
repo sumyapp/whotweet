@@ -1,0 +1,10 @@
+language: java
+dist: trusty
+addons:
+  sonarcloud:
+    organization: "sumyapp-github" # the key of the org you chose at step #3
+    token:
+      secure: b1ee0265562df49b3e3e50c3c38060f5b7019e88 # encrypted value of your token
+script:
+  # other script steps might be done before running the actual analysis
+  - sonar-scanner
